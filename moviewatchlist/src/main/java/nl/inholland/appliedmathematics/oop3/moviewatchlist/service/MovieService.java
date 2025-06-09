@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 import nl.inholland.appliedmathematics.oop3.moviewatchlist.exceptions.MovieNotFoundException;
+import nl.inholland.appliedmathematics.oop3.moviewatchlist.exceptions.RatingOutOfBoundsException;
 import nl.inholland.appliedmathematics.oop3.moviewatchlist.model.Movie;
 import nl.inholland.appliedmathematics.oop3.moviewatchlist.model.MovieDTO;
 import nl.inholland.appliedmathematics.oop3.moviewatchlist.repository.MovieRepository;
@@ -48,6 +49,10 @@ public class MovieService implements IMovieService{
         .watched(movieDTO.watched())
         .rating(movieDTO.rating())
         .build();
+
+        if(myMovie.getRating() < 0 || myMovie.getRating() > 5){
+            throw new RatingOutOfBoundsException();
+        }
 
         CompletableFuture<Void> task1 = saveMovieToDB(myMovie);
         CompletableFuture<Void> task2 = imageService.downloadImage(myImagePaths.get(0), movieDTO.destinationFolder());
