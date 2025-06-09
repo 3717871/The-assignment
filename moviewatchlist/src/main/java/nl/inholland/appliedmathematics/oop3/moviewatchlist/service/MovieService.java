@@ -36,7 +36,7 @@ public class MovieService implements IMovieService{
         List<String> myFilePaths = new ArrayList<>();
 
         for (String path : myImagePaths){
-            myFilePaths.add(movieDTO.destinationFolder() + path);
+            myFilePaths.add(movieDTO.destinationFolder().concat("/" + path));
         }
 
         Movie myMovie = Movie.builder()
