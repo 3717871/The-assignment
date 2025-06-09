@@ -14,7 +14,9 @@ import java.nio.file.StandardCopyOption;
 import java.util.concurrent.CompletableFuture;
 
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ImageService implements IImageService{
 
     @Override
