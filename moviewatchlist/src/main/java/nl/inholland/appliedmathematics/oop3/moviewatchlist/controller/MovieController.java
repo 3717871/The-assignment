@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 import nl.inholland.appliedmathematics.oop3.moviewatchlist.model.Movie;
 import nl.inholland.appliedmathematics.oop3.moviewatchlist.model.MovieDTO;
-import nl.inholland.appliedmathematics.oop3.moviewatchlist.service.MovieService;
+import nl.inholland.appliedmathematics.oop3.moviewatchlist.service.IMovieService;
 
 @RestController
 @RequestMapping("/api/movie")
 @RequiredArgsConstructor
 public class MovieController {
 
-    private final MovieService movieService;
+    private final IMovieService movieService;
 
     @PostMapping
     public ResponseEntity<Void> createPerson(@RequestBody MovieDTO movieDTO) {
