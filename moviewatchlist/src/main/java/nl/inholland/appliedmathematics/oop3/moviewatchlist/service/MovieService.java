@@ -22,7 +22,7 @@ import nl.inholland.appliedmathematics.oop3.moviewatchlist.util.TMDBSimilar;
 public class MovieService implements IMovieService{
 
     private final MovieRepository movieRepository;
-    private final ImageService imageService;
+    private final IImageService imageService;
 
     @Override
     public void createMovie(MovieDTO movieDTO) {
