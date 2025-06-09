@@ -7,10 +7,11 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 import java.util.List;
 
-/**
- * Repository interface for Movie entity.
- * Provides CRUD operations and custom query methods through JpaRepository.
- */
+// Repository interface for Movie entity.
+// Provides CRUD operations and custom query methods through JpaRepository.
+// However, the update operations are in the MovieService class since the JpaRepository has no
+// way of recognising method names that start with update as update operations.
+
 @Repository
 public interface MovieRepository extends JpaRepository<Movie, UUID>{
 
