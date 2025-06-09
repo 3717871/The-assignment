@@ -24,14 +24,4 @@ public interface MovieRepository extends JpaRepository<Movie, UUID>{
     List<Movie> findByWatched(boolean watched);
     List<Movie> findByRating(int rating);
 
-    // Update
-    Movie updateTitleById(String title, UUID id);
-    Movie updateReleaseYearById(int releaseYear, UUID id);
-    Movie updateDirectorById(String director, UUID id);
-    Movie updateGenreById(String genre, UUID id);
-    Movie updateSimilarMoviesById(String similarMovies, UUID id);
-    Movie updateFilePathsById(String filePaths, UUID id);
-    Movie updateWatchedById(boolean watched, UUID id);
-    Movie updateRatingById(int rating, UUID id);
-
 }
