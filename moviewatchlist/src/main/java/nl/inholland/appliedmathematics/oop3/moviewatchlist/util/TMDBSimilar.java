@@ -92,7 +92,7 @@ public class TMDBSimilar {
 
     public static List<String> findSimilarMovies(String responseBody){
 
-        Pattern pattern = Pattern.compile("\"original_title\"\\:\"(\\w+|\\s)+");
+        Pattern pattern = Pattern.compile("\"original_title\"\\:\"(\\w+|\\s|&)+");
         Matcher matcher = pattern.matcher(responseBody);
 
         List<String> similarMovieList = new ArrayList<>();
