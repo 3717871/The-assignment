@@ -28,18 +28,24 @@ public class MovieService implements IMovieService{
     @Override
     public void createMovie(MovieDTO movieDTO) {
 
+        // Keeping track of time.
         System.out.println("Handling POST - adding a movie and downloading images. Time: " + System.currentTimeMillis());
 
-        List<String> myBasic = OMDBBasic.getMovieInfo(movieDTO.movieName());
-        List<String> mySimilar = TMDBSimilar.getSimilarMovies(movieDTO.movieName());
-        List<String> myImagePaths = TMDBImagePaths.getImageFilePaths(movieDTO.movieName());
+        // Finally retrieving the information that is needed.
+        List<String> myBasic = OMDBBasic.getMovieInfo(movieDTO.movieName()); // Basics.
+        List<String> mySimilar = TMDBSimilar.getSimilarMovies(movieDTO.movieName()); // Extra information.
+        List<String> myImagePaths = TMDBImagePaths.getImageFilePaths(movieDTO.movieName()); // The imagepaths.
 
+        // Creating the correct filepaths for the image location with a for loop.
+        // This is also behaviour I should have placed somewhere else, but that is for the future.
         List<String> myFilePaths = new ArrayList<>();
 
         for (String path : myImagePaths){
             myFilePaths.add(movieDTO.destinationFolder().concat("/" + path));
         }
 
+        // In the future I will not do this with lists and hardcoded values for the indices.
+        // A better option is using a JSON object I saw someone else using.
         Movie myMovie = Movie.builder()
         .title(myBasic.get(0))
         .releaseYear(Integer.valueOf(myBasic.get(1)))
@@ -51,10 +57,12 @@ public class MovieService implements IMovieService{
         .rating(movieDTO.rating())
         .build();
 
+        // Check if the rating is correct and else an exception is thrown.
         if(myMovie.getRating() < 0 || myMovie.getRating() > 5){
             throw new RatingOutOfBoundsException();
         }
 
+        // Multithreading multiple operations.
         CompletableFuture<Void> task1 = saveMovieToDB(myMovie);
         CompletableFuture<Void> task2 = imageService.downloadImage(myImagePaths.get(0), movieDTO.destinationFolder());
         CompletableFuture<Void> task3 = imageService.downloadImage(myImagePaths.get(1), movieDTO.destinationFolder());
@@ -69,6 +77,7 @@ public class MovieService implements IMovieService{
     @Override
     public CompletableFuture<Void> saveMovieToDB(Movie movie) {
 
+        // Saving a movie to the database.
         return CompletableFuture.runAsync(() -> {
             System.out.println("Starting the interaction with the DB: " + System.currentTimeMillis());
             movieRepository.save(movie);
@@ -131,6 +140,7 @@ public class MovieService implements IMovieService{
     }
 
 
+    // A method which retrieves movie names according to their rating.
     @Override
     public List<String> getMovieNamesByRatingBound(int bound, boolean higher){
 
@@ -156,6 +166,7 @@ public class MovieService implements IMovieService{
     }
 
 
+    // A method which checks if there is any movie in the database between certain years.
     @Override
     public boolean isBetweenYearBounds(int lower, int upper){
 
@@ -168,6 +179,7 @@ public class MovieService implements IMovieService{
     }
 
 
+    // Get the average director rating if it exits in the database.
     public float getDirectorRating(String director){
 
         List<Movie> movies = movieRepository.findAll();
@@ -187,6 +199,7 @@ public class MovieService implements IMovieService{
     }
 
 
+    // Basic update operations.
     @Override
     public Movie updateMovieTitleById(String title, UUID id) {
         Movie movie = movieRepository.findById(id).orElseThrow(() -> new MovieNotFoundException("No movie found with id: " + id));

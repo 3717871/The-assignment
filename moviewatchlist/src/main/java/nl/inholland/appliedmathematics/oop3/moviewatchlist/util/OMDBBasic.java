@@ -20,11 +20,12 @@ import lombok.ToString;
 
 public class OMDBBasic {
 
-    // private final String omdbApiKey = "4e034029"; I do not use this variable, but I would not just delete it.
+    // private final String omdbApiKey = "4e034029"; // Apikey is already in the url.
     @Getter private static final String OMDB_URL_REQUEST = "http://www.omdbapi.com/?apikey=4e034029&";
 
     public static String requestUnstructuredMovieInfo(String movieName){
 
+        // Whitespaces must get a + sign inbetween here.
         String searchName = movieName.replaceAll("\\s+", "+");
         String result = "";
 
@@ -42,12 +43,14 @@ public class OMDBBasic {
                 // URL failed
         }
         
+        // Return a JSON object might have been more suitable.
         return result;
     }
 
     
     public static List<String> findMovieInfo(String movieInfo){
 
+        // Patterns and matchers to retrieve information.
         Pattern patternTitle = Pattern.compile("\"Title\":\"(\\w+|\\s)+"); 
         Pattern patternYear = Pattern.compile("\"Year\":\"\\d+");
         Pattern patternDirector = Pattern.compile("\"Director\":\"(\\w+|\\s)+");
@@ -80,6 +83,7 @@ public class OMDBBasic {
         return movieInfoList;
     }
 
+    // Final method to bring it all together.
     public static List<String> getMovieInfo(String movieName){
         return findMovieInfo(requestUnstructuredMovieInfo(movieName));
     }

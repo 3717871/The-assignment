@@ -11,6 +11,7 @@ import java.util.List;
 // Provides CRUD operations and custom query methods through JpaRepository.
 // However, the update operations are in the MovieService class since the JpaRepository has no
 // way of recognising method names that start with update as update operations.
+// I love this class the most, because not having to write all of the queries like before is amazing!
 
 @Repository
 public interface MovieRepository extends JpaRepository<Movie, UUID>{

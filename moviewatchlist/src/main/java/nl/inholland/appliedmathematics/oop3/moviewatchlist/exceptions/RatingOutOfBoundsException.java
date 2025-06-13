@@ -1,5 +1,7 @@
 package nl.inholland.appliedmathematics.oop3.moviewatchlist.exceptions;
 
+// Exception class for when someone filled in a rating which to me seems illegal.
+
 public class RatingOutOfBoundsException extends RuntimeException{
 
     public RatingOutOfBoundsException(){

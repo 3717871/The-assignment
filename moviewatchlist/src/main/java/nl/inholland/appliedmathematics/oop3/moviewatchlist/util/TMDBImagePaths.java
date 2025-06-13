@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
 public class TMDBImagePaths {
 
     @Getter private static final String TMDB_APITOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4MDMxMzVlYWM0YWYxZmZjMzMwNGJiYmE2MjIyMTUwZCIsIm5iZiI6MTc0NjA4OTc4NC4yODMsInN1YiI6IjY4MTMzNzM4YjYzNzA2NTVmYjkwZmYxZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.R_OxsImltSnT9Tk9IJuwm53fwGpBZQ6eMNe9ldM8FfA";
-    // private final String TMDB_apiKey = "803135eac4af1ffc3304bbba6222150d"; I do not use this variable, but I would not just delete it.
+    // private final String TMDB_apiKey = "803135eac4af1ffc3304bbba6222150d"; apikey not used.
 
     public static String requestUnstructutredImageFilePaths(String movieID){
 
@@ -58,7 +58,7 @@ public class TMDBImagePaths {
         int count = 0;
 
         while (matcher.find() && count < 3){
-            filePaths.add(matcher.group().substring(14).trim());
+            filePaths.add(matcher.group().substring(14).trim()); // Again, hard coded but it remains the same.
             count++;
         }
 
@@ -66,6 +66,7 @@ public class TMDBImagePaths {
     }
 
 
+    // A final method to bring it all together.
     public static List<String> getImageFilePaths(String movieName){
 
         return findImageFilePaths(requestUnstructutredImageFilePaths(TMDBSimilar.findMovieID(TMDBSimilar.requestUnstructuredMovieID(movieName))));

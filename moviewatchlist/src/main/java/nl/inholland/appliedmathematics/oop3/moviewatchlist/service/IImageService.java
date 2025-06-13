@@ -2,6 +2,8 @@ package nl.inholland.appliedmathematics.oop3.moviewatchlist.service;
 
 import java.util.concurrent.CompletableFuture;
 
+// Just the (small) interface for the imageservice.
+
 public interface IImageService {
 
     /**

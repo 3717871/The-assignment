@@ -19,6 +19,9 @@ import nl.inholland.appliedmathematics.oop3.moviewatchlist.model.Movie;
 import nl.inholland.appliedmathematics.oop3.moviewatchlist.model.MovieDTO;
 import nl.inholland.appliedmathematics.oop3.moviewatchlist.service.IMovieService;
 
+// Controller class with methods that are better explained in the service class, 
+// because they all call to the service object.
+
 @RestController
 @RequestMapping("/api/movie")
 @RequiredArgsConstructor

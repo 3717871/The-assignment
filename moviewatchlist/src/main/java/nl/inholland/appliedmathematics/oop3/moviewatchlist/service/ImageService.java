@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ImageService implements IImageService{
 
+    // Async and completablefuture for the multi threading.
     @Override
     @Async("taskExecutor")
     public CompletableFuture<Void> downloadImage(String imagePath, String destinationFolder) {
@@ -30,12 +31,15 @@ public class ImageService implements IImageService{
                 URL movieImageURL = new URI("https://image.tmdb.org/t/p/w780/" + imagePath).toURL();
                 URLConnection movieImageUrlConnection = movieImageURL.openConnection();
 
+                // Yes, I am aware that API-keys should never be in your repository,
+                // escecially the ones that are public.
                 movieImageUrlConnection.setRequestProperty("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4MDMxMzVlYWM0YWYxZmZjMzMwNGJiYmE2MjIyMTUwZCIsIm5iZiI6MTc0NjA4OTc4NC4yODMsInN1YiI6IjY4MTMzNzM4YjYzNzA2NTVmYjkwZmYxZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.R_OxsImltSnT9Tk9IJuwm53fwGpBZQ6eMNe9ldM8FfA");
                 movieImageUrlConnection.connect();
 
                 InputStream in = movieImageUrlConnection.getInputStream();
                 OutputStream out = new FileOutputStream(destinationFolder + "/" + imagePath);
 
+                // Reading the writing the image into bytes
                 byte[] buffer = new byte[1024];
                 int bytesRead;
 

@@ -26,10 +26,14 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 
+// Then of course my Movie class with only the attributes and little to no extra behaviour.
+
 public class Movie {
 
     @Id
     @Column(nullable = false)
+
+    // Very important unique identifier!
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 

@@ -1,5 +1,7 @@
 package nl.inholland.appliedmathematics.oop3.moviewatchlist.model;
 
+// My DTO class which I see as what the User fills in to correctly Post a movie.
+
 public record MovieDTO(String movieName, boolean watched, int rating, String destinationFolder) {
 
         @Override

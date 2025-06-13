@@ -17,13 +17,17 @@ import java.util.regex.Pattern;
 @ToString
 @EqualsAndHashCode
 
+// This class is very similar to the TMDBImagePaths class since they share the same url they want to retrieve information from.
+
 public class TMDBSimilar {
 
     @Getter private static final String TMDB_APITOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4MDMxMzVlYWM0YWYxZmZjMzMwNGJiYmE2MjIyMTUwZCIsIm5iZiI6MTc0NjA4OTc4NC4yODMsInN1YiI6IjY4MTMzNzM4YjYzNzA2NTVmYjkwZmYxZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.R_OxsImltSnT9Tk9IJuwm53fwGpBZQ6eMNe9ldM8FfA";
-    // private final String TMDB_apiKey = "803135eac4af1ffc3304bbba6222150d"; I do not use this variable, but I would not just delete it.
+    // private final String TMDB_apiKey = "803135eac4af1ffc3304bbba6222150d";
 
     public static String requestUnstructuredMovieID(String movieName){
 
+        // Movie names in the TMDB are handled differently.
+        // The whitespaces in the name must get  '%20' inbetween.
         String searchMovieName = movieName.replaceAll("\\s+", "%20");
         String result = "";
         

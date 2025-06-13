@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
+// The service class with a lot of (basic) CRUD operations.
+
 public interface IMovieService {
 
     // Create (& save)
