@@ -131,6 +131,7 @@ public class MovieService implements IMovieService{
     }
 
 
+    @Override
     public List<String> getMovieNamesByRatingBound(int bound, boolean higher){
 
         List<Movie> movies = movieRepository.findAll();
@@ -155,6 +156,7 @@ public class MovieService implements IMovieService{
     }
 
 
+    @Override
     public boolean isBetweenYearBounds(int lower, int upper){
 
         List<Movie> movies = movieRepository.findAll();
