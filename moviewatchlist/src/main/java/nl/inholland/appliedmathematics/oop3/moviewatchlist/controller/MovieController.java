@@ -39,49 +39,49 @@ public class MovieController {
     }
 
 
-    @GetMapping("/{title}")
+    @GetMapping("/title/{title}")
     public ResponseEntity<List<Movie>> findMovieByTitle(@PathVariable String title) {
         return ResponseEntity.ok(movieService.getMovieByTitle(title));
     }
 
 
-    @GetMapping("/{releaseYear}")
+    @GetMapping("/releaseYear/{releaseYear}")
     public ResponseEntity<List<Movie>> findMovieByReleaseYear(@PathVariable int releaseYear) {
         return ResponseEntity.ok(movieService.getMovieByReleaseYear(releaseYear));
     }
 
 
-    @GetMapping("/{director}")
+    @GetMapping("/director/{director}")
     public ResponseEntity<List<Movie>> findMovieByDirector(@PathVariable String director) {
         return ResponseEntity.ok(movieService.getMovieByDirector(director));
     }
 
 
-    @GetMapping("/{genre}")
+    @GetMapping("/genre/{genre}")
     public ResponseEntity<List<Movie>> findMovieByGenre(@PathVariable String genre) {
         return ResponseEntity.ok(movieService.getMovieByGenre(genre));
     }
 
 
-    @GetMapping("/{similarMovies}")
+    @GetMapping("/similarMovies/{similarMovies}")
     public ResponseEntity<List<Movie>> findMovieBySimilarMovies(@PathVariable String similarMovies) {
         return ResponseEntity.ok(movieService.getMovieBySimilarMovies(similarMovies));
     }
 
 
-    @GetMapping("/{filePaths}")
+    @GetMapping("/filePaths/{filePaths}")
     public ResponseEntity<List<Movie>> findMovieByFilePaths(@PathVariable String filePaths) {
         return ResponseEntity.ok(movieService.getMovieByFilePaths(filePaths));
     }
 
 
-    @GetMapping("/{watched}")
+    @GetMapping("/watched/{watched}")
     public ResponseEntity<List<Movie>> findMovieByFileWatched(@PathVariable boolean watched) {
         return ResponseEntity.ok(movieService.getMovieByWatched(watched));
     }
 
 
-    @GetMapping("/{rating}")
+    @GetMapping("/rating/{rating}")
     public ResponseEntity<List<Movie>> findMovieByRating(@PathVariable int rating) {
         return ResponseEntity.ok(movieService.getMovieByRating(rating));
     }
