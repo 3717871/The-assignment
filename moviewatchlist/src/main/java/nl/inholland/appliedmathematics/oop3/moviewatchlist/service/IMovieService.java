@@ -22,6 +22,9 @@ public interface IMovieService {
     List<Movie> getMovieByFilePaths(String filePaths);
     List<Movie> getMovieByWatched(boolean watched);
     List<Movie> getMovieByRating(int rating);
+    List<String> getMovieNamesByRatingBound(int bound, boolean higher);
+    boolean isBetweenYearBounds(int lower, int upper);
+    float getDirectorRating(String director);
 
     // Update
     Movie updateMovieTitleById(String title, UUID id);
