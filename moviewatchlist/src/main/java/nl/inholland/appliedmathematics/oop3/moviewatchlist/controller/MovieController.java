@@ -87,6 +87,24 @@ public class MovieController {
     }
 
 
+    @GetMapping("/rating/stream/{bound}/{higher}")
+    public ResponseEntity<List<String>> findMovieByRatingBound(@PathVariable int bound, @PathVariable boolean higher) {
+        return ResponseEntity.ok(movieService.getMovieNamesByRatingBound(bound, higher));
+    }
+
+
+    @GetMapping("/rating/stream/{lower}/{upper}")
+    public ResponseEntity<Boolean> findMovieByYearBounds(@PathVariable int lower, @PathVariable int upper) {
+        return ResponseEntity.ok(movieService.isBetweenYearBounds(lower, upper));
+    }
+
+
+    @GetMapping("/rating/stream/{director}")
+    public ResponseEntity<Float> findAverageDirectorRating(@PathVariable String director) {
+        return ResponseEntity.ok(movieService.getDirectorRating(director));
+    }
+
+
     @PutMapping("/{id}/title")
     public ResponseEntity<Movie> updateMovieTitleById(@PathVariable UUID id, @RequestBody String title) {
         Movie updatedPerson = movieService.updateMovieTitleById(title, id);
