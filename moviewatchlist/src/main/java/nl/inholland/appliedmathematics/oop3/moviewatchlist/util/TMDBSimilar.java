@@ -48,12 +48,12 @@ public class TMDBSimilar {
     }
 
 
-    public static String findMovieID(String movieName){
+    public static String findMovieID(String movieInfo){
 
         String result = "";
 
         Pattern pattern = Pattern.compile("\"id\":\\d+");
-        Matcher matcher = pattern.matcher(movieName);
+        Matcher matcher = pattern.matcher(movieInfo);
 
         if (matcher.find()){
             return matcher.group().substring(5);
